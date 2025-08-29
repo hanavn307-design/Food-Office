@@ -167,7 +167,7 @@
           <span class="dot"></span>
           <span id="dishName">Sẵn sàng random món!</span>
         </span>
-        <img id="dishImg" alt="Ảnh món ăn" />
+        <img id="dishImg" alt="Ảnh món ăn" referrerpolicy="no-referrer" />
       </div>
       <div class="actions">
         <button id="randomBtn" class="btn" aria-label="Random món ăn">🎲 Random món ngay</button>
@@ -232,9 +232,26 @@
       // Hiệu ứng ảnh
       imgEl.classList.remove("show");
       imgEl.alt = `Ảnh món: ${dish.name}`;
+      imgEl.referrerPolicy = "no-referrer";
+
       // Sử dụng ảnh hotlink từ Unsplash Source, kích thước 1280x720, ưu tiên minh họa/chibi
-      const unsplashUrl = `https://source.unsplash.com/1280x720/?${encodeURIComponent(dish.query)}`;
-      imgEl.src = unsplashUrl;
+      const primaryUrl = `https://source.unsplash.com/1280x720/?${encodeURIComponent(dish.query)}`;
+      const fallbackQuery = `${dish.name} food illustration chibi kawaii`;
+      const fallbackUrl = `https://source.unsplash.com/1280x720/?${encodeURIComponent(fallbackQuery)}`;
+
+      // Gắn handler trước khi đổi src để chắc chắn chạy
+      imgEl.onload = () => imgEl.classList.add("show");
+      imgEl.onerror = () => {
+        // Thử fallback nếu link đầu lỗi hoặc trắng
+        if (imgEl.src !== fallbackUrl) {
+          imgEl.src = fallbackUrl;
+        } else {
+          // Nếu vẫn lỗi, hiện khung trống nhưng cho hiện ảnh để không "ẩn"
+          imgEl.classList.add("show");
+        }
+      };
+
+      imgEl.src = primaryUrl;
 
       imgEl.onload = () => imgEl.classList.add("show");
       burstConfetti();
