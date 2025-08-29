@@ -179,38 +179,38 @@
   </div>
 
   <script>
-    // Danh sách 30 món + từ khóa ảnh Unsplash
+    // Danh sách 30 món + từ khóa tìm ảnh Unsplash (ưu tiên chibi/minh họa)
     const DISHES = [
-      { name: "Phở bò",                query: "vietnamese pho beef" },
-      { name: "Bún chả",               query: "vietnamese bun cha" },
-      { name: "Bánh mì thịt",          query: "banh mi" },
-      { name: "Cơm tấm sườn bì chả",   query: "com tam broken rice vietnam" },
-      { name: "Hủ tiếu Nam Vang",     query: "hu tieu" },
-      { name: "Bún bò Huế",            query: "bun bo hue" },
-      { name: "Bánh cuốn",             query: "banh cuon vietnamese steamed rice rolls" },
-      { name: "Gỏi cuốn",              query: "fresh spring rolls vietnamese" },
-      { name: "Bánh xèo",              query: "banh xeo vietnamese crepe" },
-      { name: "Cơm gà Hải Nam",        query: "hainanese chicken rice" },
-      { name: "Mì Quảng",              query: "mi quang vietnam" },
-      { name: "Bún thịt nướng",        query: "bun thit nuong" },
-      { name: "Cơm chiên Dương Châu",  query: "yangzhou fried rice" },
-      { name: "Cá kho tộ",             query: "caramelized braised fish clay pot vietnamese" },
-      { name: "Gà rán + khoai tây",    query: "fried chicken and fries" },
-      { name: "Sushi set",             query: "sushi assorted platter" },
-      { name: "Pizza",                 query: "pizza" },
-      { name: "Spaghetti Bolognese",   query: "spaghetti bolognese" },
-      { name: "Salad cá ngừ",          query: "tuna salad" },
-      { name: "Bò lúc lắc + cơm",      query: "shaking beef bo luc lac" },
-      { name: "Lẩu Thái (ăn nhóm)",    query: "thai hot pot tom yum" },
-      { name: "Cơm văn phòng",         query: "office lunch box" },
-      { name: "Bánh canh giò heo",     query: "banh canh vietnamese" },
-      { name: "Cháo gà",               query: "chicken congee" },
-      { name: "Bún riêu",              query: "bun rieu vietnamese crab noodle soup" },
-      { name: "Bánh tráng trộn",       query: "vietnamese rice paper salad" },
-      { name: "Cơm cà ri gà",          query: "chicken curry rice" },
-      { name: "Pad Thai",              query: "pad thai" },
-      { name: "Kimbap + tokbokki",     query: "kimbap tteokbokki" },
-      { name: "Bánh ướt lòng gà",      query: "banh uot offal chicken vietnamese" },
+      { name: "Phở bò",                query: "pho bo, vietnamese noodle soup, food, illustration, chibi" },
+      { name: "Bún chả",               query: "bun cha, vietnamese grilled pork noodles, food, illustration, chibi" },
+      { name: "Bánh mì thịt",          query: "banh mi, vietnamese sandwich, food, illustration, chibi" },
+      { name: "Cơm tấm sườn bì chả",   query: "broken rice, com tam, vietnamese rice plate, illustration, chibi" },
+      { name: "Hủ tiếu Nam Vang",     query: "hu tieu, vietnamese noodle soup, food, illustration, chibi" },
+      { name: "Bún bò Huế",            query: "bun bo hue, spicy beef noodle soup, vietnamese, illustration, chibi" },
+      { name: "Bánh cuốn",             query: "banh cuon, vietnamese steamed rice rolls, food, illustration, chibi" },
+      { name: "Gỏi cuốn",              query: "goi cuon, vietnamese spring rolls, fresh, illustration, chibi" },
+      { name: "Bánh xèo",              query: "banh xeo, vietnamese pancake, savory crepe, illustration, chibi" },
+      { name: "Cơm gà Hải Nam",        query: "hainanese chicken rice, rice plate, illustration, chibi" },
+      { name: "Mì Quảng",              query: "mi quang, vietnamese turmeric noodle, food, illustration, chibi" },
+      { name: "Bún thịt nướng",        query: "bun thit nuong, grilled pork vermicelli, vietnamese, illustration, chibi" },
+      { name: "Cơm chiên Dương Châu",  query: "yangzhou fried rice, chinese fried rice, illustration, chibi" },
+      { name: "Cá kho tộ",             query: "caramelized fish clay pot, vietnamese braised fish, illustration, chibi" },
+      { name: "Gà rán + khoai tây",    query: "fried chicken and fries, fast food, illustration, chibi" },
+      { name: "Sushi set",             query: "sushi set, japanese food platter, illustration, chibi" },
+      { name: "Pizza",                 query: "pizza, slice, cheese, food, illustration, chibi" },
+      { name: "Spaghetti Bolognese",   query: "spaghetti bolognese, pasta bowl, italian food, illustration, chibi" },
+      { name: "Salad cá ngừ",          query: "tuna salad, healthy bowl, salad, illustration, chibi" },
+      { name: "Bò lúc lắc + cơm",      query: "shaking beef, bo luc lac, rice plate, vietnamese, illustration, chibi" },
+      { name: "Lẩu Thái (ăn nhóm)",    query: "thai hot pot, tom yum, shared hotpot, illustration, chibi" },
+      { name: "Cơm văn phòng",         query: "office lunch box, bento, rice box, illustration, chibi" },
+      { name: "Bánh canh giò heo",     query: "banh canh gio heo, vietnamese thick noodle soup, illustration, chibi" },
+      { name: "Cháo gà",               query: "chicken congee, rice porridge bowl, comfort food, illustration, chibi" },
+      { name: "Bún riêu",              query: "bun rieu, crab noodle soup, vietnamese, illustration, chibi" },
+      { name: "Bánh tráng trộn",       query: "banh trang tron, rice paper salad, street food, illustration, chibi" },
+      { name: "Cơm cà ri gà",          query: "chicken curry with rice, asian curry plate, illustration, chibi" },
+      { name: "Pad Thai",              query: "pad thai, thai stir fried noodles, street food, illustration, chibi" },
+      { name: "Kimbap + tokbokki",     query: "kimbap with tteokbokki, korean street food, illustration, chibi" },
+      { name: "Bánh ướt lòng gà",      query: "banh uot long ga, vietnamese rice sheets chicken offal, illustration, chibi" },
     ];
 
     const nameEl = document.getElementById("dishName");
@@ -218,10 +218,6 @@
     const btn    = document.getElementById("randomBtn");
 
     let lastIndex = -1;
-
-    const unsplashUrl = (query) =>
-      // Dùng sig=time để tránh cache, thay kích thước tùy ý
-      `https://source.unsplash.com/900x600/?${encodeURIComponent(query)}&sig=${Date.now()}`;
 
     function pickRandom() {
       let idx;
@@ -235,9 +231,10 @@
 
       // Hiệu ứng ảnh
       imgEl.classList.remove("show");
-      const url = unsplashUrl(dish.query);
       imgEl.alt = `Ảnh món: ${dish.name}`;
-      imgEl.src = url;
+      // Sử dụng ảnh hotlink từ Unsplash Source, kích thước 1280x720, ưu tiên minh họa/chibi
+      const unsplashUrl = `https://source.unsplash.com/1280x720/?${encodeURIComponent(dish.query)}`;
+      imgEl.src = unsplashUrl;
 
       imgEl.onload = () => imgEl.classList.add("show");
       burstConfetti();
