@@ -234,24 +234,30 @@
       imgEl.alt = `Ảnh món: ${dish.name}`;
       imgEl.referrerPolicy = "no-referrer";
 
-      // Sử dụng ảnh hotlink từ Unsplash Source, kích thước 1280x720, ưu tiên minh họa/chibi
-      const primaryUrl = `https://source.unsplash.com/1280x720/?${encodeURIComponent(dish.query)}`;
-      const fallbackQuery = `${dish.name} food illustration chibi kawaii`;
-      const fallbackUrl = `https://source.unsplash.com/1280x720/?${encodeURIComponent(fallbackQuery)}`;
+      // Nhiều nguồn ảnh hotlink (không cần API): ưu tiên LoremFlickr theo từ khóa
+      const kwords = `${dish.name} food illustration chibi kawaii`;
+      const urlCandidates = [
+        // 1) LoremFlickr theo tên món + từ khóa
+        `https://loremflickr.com/1280/720/${encodeURIComponent(kwords.replace(/\s+/g, ','))}?lock=${lastIndex}`,
+        // 2) LoremFlickr chung chủ đề đồ ăn minh họa
+        `https://loremflickr.com/1280/720/${encodeURIComponent('food,illustration,chibi,kawaii')}?random=${Date.now()}`,
+        // 3) Picsum theo seed tên món (không đúng chủ đề nhưng đảm bảo có ảnh)
+        `https://picsum.photos/seed/${encodeURIComponent(dish.name)}/1280/720`,
+      ];
 
       // Gắn handler trước khi đổi src để chắc chắn chạy
+      let candidateIndex = 0;
       imgEl.onload = () => imgEl.classList.add("show");
       imgEl.onerror = () => {
-        // Thử fallback nếu link đầu lỗi hoặc trắng
-        if (imgEl.src !== fallbackUrl) {
-          imgEl.src = fallbackUrl;
+        candidateIndex += 1;
+        if (candidateIndex < urlCandidates.length) {
+          imgEl.src = urlCandidates[candidateIndex];
         } else {
-          // Nếu vẫn lỗi, hiện khung trống nhưng cho hiện ảnh để không "ẩn"
           imgEl.classList.add("show");
         }
       };
 
-      imgEl.src = primaryUrl;
+      imgEl.src = urlCandidates[candidateIndex];
 
       imgEl.onload = () => imgEl.classList.add("show");
       burstConfetti();
